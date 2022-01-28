@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Semantic UI</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+
+    <link
+      href="https://unpkg.com/filepond/dist/filepond.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="semantic/dist/semantic.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <style>
+      .demoContent {
+        padding-bottom: 10px;
+      }
+      /* #coverImage {
+        height: 10rem !important;
+      } */
+      .title::after {
+        content: "*";
+        color: red;
+      }
+    </style>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"
+    ></script>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script defer src="js/fileUpload.js"></script>
+    <script defer src="js/index.js"></script>
+  </head>
+  <body>
+    <form action="/" method="POST">
+      <div class="message"></div>
+      <div class="ui centered grid">
+        <div
+          class="sixteen wide mobile eight wide tablet four wide computer column"
+        >
+          <div class="ui center aligned container">
+            <h2 class="title">Upload Image</h2>
+            <div class="ui center aligned container demoContent">
+              <input
+                type="file"
+                name="coverImage"
+                placeholder="Place Image"
+                id="coverImage"
+                class="filepond"
+                required
+              />
+            </div>
+            <button class="ui primary button" type="submit">Submit</button>
+            <button class="ui primary button" type="submit">
+              <a href="browse.html" style="color: white">Browse</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
