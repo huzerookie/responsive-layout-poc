@@ -1,23 +1,22 @@
 fetch('/images').then(res => res.json()).then(images => {
-    console.log(images)
-    /*  < div class="column marginDivider" >
-         <div class="ui fluid card">
-             <div class="image">
-                 <img src="/images/avatar/large/daniel.jpg" />
-             </div>
-         </div>
-     </ > */
     const parentDiv = document.querySelector(".doubling.four.column.row")
-
+    if (!Object.keys(images).length) {
+        const errorDiv = document.createElement('div')
+        errorDiv.textContent = "No images found to preview!"
+        parentDiv.appendChild(errorDiv);
+        return;
+    }
     for (image of images) {
-        const divImage = createImageDiv(image.coverImage)
+        const divImage = createImageDiv(image)
         parentDiv.appendChild(divImage)
     }
 }).catch(e => console.log(e))
 
+//const convertBinaryToImageFormat = image => `data:${image.coverImageType};charset=utf-8;base64,${image.coverImage.data.toString('base64')}`;
+
 const createImageDiv = (image) => {
     const img = document.createElement('img');
-    img.src = image
+    img.src = image;
 
     const imageDiv = document.createElement('div')
     imageDiv.className = 'image'
