@@ -1,5 +1,5 @@
 require('dotenv').config()
-const mongooseURL = process.env.LOCAL_DATABASE_URL
+const mongooseURL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
 const express = require("express");
 const path = require('path');
 const app = new express.Router();
@@ -9,21 +9,16 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const crypto = require('crypto');
 const Form = require('../model/form.model')
-//const { gfs, mongooseURL } = require('../config/config')
 const service = require('../service/imageToBinary.service')
 const userMapper = require('../service/form.service').userMapper
 
 //DB Connection
-let gfs, gridfsBucket;
-const conn = mongoose.createConnection(mongooseURL);
+let gfs;
+const conn = mongoose.connection;
 conn.once('open', () => {
-    // Init stream
-    gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-        bucketName: 'uploads'
-    })
+    // Init stream   
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection('uploads');
-    // console.log(gfs)
 });
 
 // Create storage engine
@@ -60,7 +55,6 @@ app.get('/:userId', async (req, res) => {
         const filename = user.image
         gfs.files.findOne({ filename }, (err, file) => {
             // Check if file
-            console.log("/userId:" + file.filename)
             if (!file || file.length === 0) {
                 return res.status(404).json({
                     err: 'No file exists'
