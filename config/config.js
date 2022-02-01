@@ -5,7 +5,7 @@ mongoose.connect(mongooseURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(async (connection) => {
-    console.log(mongooseURL)
+    //console.log(mongooseURL)
     console.log("connection successful");
 }).catch((e) => {
     console.log(e);
